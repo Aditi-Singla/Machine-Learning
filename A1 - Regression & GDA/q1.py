@@ -1,21 +1,30 @@
-import numpy as np
-import pandas as pd
+import sys
 import csv
 import math
-import matplotlib.pyplot as plt
+import copy
+import argparse
+import numpy as np
+import pandas as pd
 import matplotlib as mpl
+import matplotlib.pyplot as plt
+import matplotlib.animation as anim
+from matplotlib import cm
 from mpl_toolkits import mplot3d
 from mpl_toolkits.mplot3d import Axes3D
-from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
-import copy
-import matplotlib.animation as anim
 
+def getParser():
+	parser = argparse.ArgumentParser(description='Input data points')
+	parser.add_argument('--x', help='Datapoints features')
+	parser.add_argument('--y', help='Datapoints labels')
+	return parser
 
-dataX = pd.read_csv('q1x.dat', header=None)
+args = vars(getParser().parse_args(sys.argv[1:]))
+
+dataX = pd.read_csv(args['x'], header=None)
 X = np.array(dataX.as_matrix(columns=None))
 m, n = X.shape
-dataY = pd.read_csv('q1y.dat', header=None)
+dataY = pd.read_csv(args['y'], header=None)
 y = np.array(dataY.as_matrix(columns=None))
 
 X_unnormalised = copy.deepcopy(X)
@@ -77,7 +86,7 @@ plt.ylabel('Prices')
 plt.grid(True)
 plt.show()
 
-print('No. of iterations : ' + str(n_iter))	
+print('No. of iterations : ' + str(n_iter)) 
 print('Normalised theta : ['+ str(theta[0][0])+','+str(theta[1][0])+']')
 print('Unnormalised theta : ['+ str(theta_unnormalised[0][0])+','+str(theta_unnormalised[1][0])+']')
 
@@ -108,9 +117,9 @@ ax2.clabel(cset, fontsize=9, inline=1)
 
 ### Animation
 
-for i in xrange(len(theta0_history)):
+for i in range(len(theta0_history)):
 	ax.scatter(theta0_history[i],theta1_history[i],J_history[i])
 	ax2.scatter(theta0_history[i],theta1_history[i],J_history[i])
-	plt.pause(0.2)
+	plt.pause(0.0001)
 
 plt.show()
