@@ -1,20 +1,30 @@
+import csv
+import sys
+import math
+import argparse
 import numpy as np
 import pandas as pd
-import csv
-import math
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+
+def getParser():
+	parser = argparse.ArgumentParser(description='Input data points')
+	parser.add_argument('--x', help='Datapoints features')
+	parser.add_argument('--y', help='Datapoints labels')
+	return parser
+
+args = vars(getParser().parse_args(sys.argv[1:]))
 
 mpl.rcParams['lines.color'] = 'k'
 # mpl.rcParams['axes.prop_cycle'] = mpl.cycler('color', ['k'])
 
 ### Read data from files, y = 0 for Alaska & y = 1 for Canada
 
-dataX = open( "q4x.dat", "r" )
+dataX = open(args['x'], "r" )
 X1 = [[float(a) for a in line.split()] for line in dataX]  #X is a list
 X = np.array([np.array(x) for x in X1])
 m, n = X.shape
-dataY = pd.read_csv('q4y.dat', header=None)
+dataY = pd.read_csv(args['y'], header=None)
 y1 = np.array(dataY.as_matrix(columns=None))
 y = np.zeros((m,1))
 for i in range(m):
