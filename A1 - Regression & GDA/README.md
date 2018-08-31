@@ -6,9 +6,8 @@ A detailed report with experimentation and results can be found [here](./Report.
 
 #### Running the code
 
-- To run the algorithms, question wise -
+- To run the algorithms, question wise (for eg. q1) -
 
   ```bash
-  python q<i>.py --x <input data file> --y <data label file>
+  python q1.py --x <input data file> --y <data label file>
   ```
-
