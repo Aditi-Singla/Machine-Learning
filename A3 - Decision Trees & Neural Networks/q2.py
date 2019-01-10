@@ -1,7 +1,8 @@
-import random
-import numpy as np
+import sys
 import time
 import math
+import random
+import numpy as np
 
 ###################################################
 ##############  Helper functions  #################
@@ -129,14 +130,14 @@ def train_model_sgd(data, w1, w2, b1, b2, alpha, num_iter):
 
 m_train = 0
 n_train = 0
-with open('connect_4/train.data') as fp:
+with open(sys.argv[1]) as fp:
 	for line in fp:
 		m_train += 1
 		n_train = len(line.split(","))
 
 train_data = np.matrix(np.zeros((m_train,n_train)))
 
-with open('connect_4/train.data') as fp:
+with open(sys.argv[1]) as fp:
 	row = 0
 	for line in fp:
 		a = line.split(",")
@@ -154,7 +155,7 @@ input_layer_size = n_train - 1
 num_labels = 3
 hidden_layer_size = 100
 alpha = .003
-num_iter = 40
+num_iter = 4
 
 ########## Initialise weights randomly ############
 W1 = rand_initialise_weight(hidden_layer_size, input_layer_size)
@@ -195,14 +196,14 @@ print('Training set {} % ||'.format(float(acc)/m * 100))
 
 m_test = 0
 n_test = 0
-with open('connect_4/test.data') as fp:
+with open(sys.argv[2]) as fp:
 	for line in fp:
 		m_test += 1
 		n_test = len(line.split(","))
 
 test_data = np.matrix(np.zeros((m_test,n_test)))
 
-with open('connect_4/test.data') as fp:
+with open(sys.argv[2]) as fp:
 	row = 0
 	for line in fp:
 		a = line.split(",")

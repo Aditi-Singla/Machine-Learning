@@ -1,5 +1,5 @@
-from sklearn.ensemble import RandomForestClassifier
 import sys
+from sklearn.ensemble import RandomForestClassifier
 
 with open(sys.argv[1]) as f:
 	file = f.readlines()

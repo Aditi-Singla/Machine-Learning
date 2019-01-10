@@ -1,12 +1,12 @@
-#include <iostream>
-#include <algorithm> 
-#include <fstream>
-#include <string.h>
-#include <math.h>
-#include <unordered_map>
+#include <cmath>
 #include <climits>
 #include <vector>
-#include <assert.h>
+#include <string>
+#include <fstream>
+#include <numeric>
+#include <iostream>
+#include <algorithm> 
+
 using namespace std;
 
 int iterations = 0;
@@ -261,14 +261,14 @@ float checkAccuracy(char filename[]){
 	}
 }
 
-void plot(char filename1[], char filename2[], char filename3[]){
-	float c1 = checkAccuracy(filename1);
-	float c2 = checkAccuracy(filename2);
-	float c3 = checkAccuracy(filename3);
-	string str = "";
-	str = to_string(totalNumberofNodes) + "," + to_string(c1) + "," + to_string(c2) + "," + to_string(c3) + "\n";
-	outputfile << str;
-}
+// void plot(char filename1[], char filename2[], char filename3[]){
+// 	float c1 = checkAccuracy(filename1);
+// 	float c2 = checkAccuracy(filename2);
+// 	float c3 = checkAccuracy(filename3);
+// 	string str = "";
+// 	str = to_string(totalNumberofNodes) + "," + to_string(c1) + "," + to_string(c2) + "," + to_string(c3) + "\n";
+// 	outputfile << str;
+// }
 
 void growTree(Node *node, char filename1[], char filename2[], char filename3[]){
 	totalNumberofNodes++;
@@ -501,15 +501,6 @@ int pruneTree2(Node* tree, vector<int> examples){
 	return 0;
 }
 
-int pruneTree3(Node* tree, vector<int> examples, char filename1[], char filename2[], char filename3[]){
-	while (traverseTree(tree,examples)){
-		plot(filename1,filename2,filename3);
-		iterations++;
-		setToZero(tree);
-	}
-	return 0;
-}
-
 void postPrune(char filename[], Node *node){
 	ifstream in;
 	in.open(filename);
@@ -601,9 +592,9 @@ int main(int argc, char * argv[]){
 	cout << "--------------------------------------" << endl;
 	cout << "Starting to grow the tree..." << endl;
 	
-	outputfile.open("growAcc.csv");
+	// outputfile.open("growAcc.csv");
 	growTree(root,argv[1],argv[2],argv[3]);
-	outputfile.close();
+	// outputfile.close();
 	
 	cout << "Done!" << endl;
 	cout << "Total Nodes in tree : " << totalNumberofNodes << endl; 
@@ -620,11 +611,11 @@ int main(int argc, char * argv[]){
 	
 	cout << "Starting to prune the tree w.r.t Validation Data..." << endl;
 	
-	outputfile.open("pruneAcc.csv");
+	// outputfile.open("pruneAcc.csv");
 	postPrune(argv[2],root);
-	outputfile.close();
+	// outputfile.close();
 	
-	cout << "Number of iterations : " << iterations << endl;
+	// cout << "Number of iterations : " << iterations << endl;
 	cout << "Done!" << endl;
 	cout << "\n--------------------------------------" << endl;
 	

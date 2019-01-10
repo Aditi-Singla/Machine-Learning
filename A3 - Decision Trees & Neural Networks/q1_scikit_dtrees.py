@@ -1,5 +1,5 @@
-from sklearn import tree
 import sys
+from sklearn import tree
 
 with open(sys.argv[1]) as f:
 	file = f.readlines()
