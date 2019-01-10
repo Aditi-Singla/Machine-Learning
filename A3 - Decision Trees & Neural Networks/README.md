@@ -16,7 +16,7 @@ To run the algorithms -
 
 - For q1 on dtrees and random forests using scikit,
 
- ```bash
+  ```bash
   python q1_scikit_dtrees.py <train-data> <test-data>
   python q1_scikit_forests.py <train-data> <test-data>
   ```
