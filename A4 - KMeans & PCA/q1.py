@@ -1,22 +1,22 @@
-import numpy as np
-np.seterr(divide='ignore',invalid='ignore')
-import itertools
-import random
 import sys
 import time
+import random
+import itertools
+import numpy as np
 from sklearn import svm
-from sklearn.model_selection import cross_val_score
 from collections import Counter
 import matplotlib.pyplot as plt
 np.set_printoptions(threshold=np.inf)
+np.seterr(divide='ignore',invalid='ignore')
+from sklearn.model_selection import cross_val_score
 
 ####################################################
 ##############  Read the input files  ##############
 
-print "Reading files...." 
+print "Reading files...."
 
-X_data = np.matrix(np.loadtxt("attr.txt", delimiter=" "))
-X_label = np.matrix(np.loadtxt("label.txt", delimiter=" "))
+X_data = np.matrix(np.loadtxt(sys.argv[1], delimiter=" "))
+X_label = np.matrix(np.loadtxt(sys.argv[2], delimiter=" "))
 m, n = X_data.shape
 
 ####################################################
@@ -47,7 +47,7 @@ def moveCenter(idx,K):
 		centers = np.add(tmp,centers)
 		count[c,0] += 1.0
 	# print count
-	centers = np.divide(centers,count)	
+	centers = np.divide(centers,count)
 	return centers
 
 # Find the optimal centers and cluster ids for each data point
@@ -104,7 +104,7 @@ num_iter = 30
 # count = np.zeros((6,1))
 # for i in idx:
 # 	count[i-1,0] += 1
-# print count	
+# print count
 acc = findAccuracy(idx)
 print "Cost, J : ", J[0,0]
 print "Accuracy : ",acc
@@ -117,10 +117,10 @@ minJ = sys.maxint
 for i in range(10):
 	(idx,J,initcenters) = Kmeans1(K,num_iter)
 	acc = findAccuracy(idx)
-	print i," : ",J[0,0]," , ",acc 
+	print i," : ",J[0,0]," , ",acc
 	if (J<minJ):
 		minJ = J
-		initialCenters = initcenters 
+		initialCenters = initcenters
 
 print "\nVarying number of iterations on optimal initial centers.."
 numIterations = []
@@ -145,7 +145,6 @@ plt.ylabel('J')
 plt.grid(True)
 plt.show()
 
-
 ####################################################
 ########### Scikit Cross Validation ################
 
@@ -158,6 +157,6 @@ def crossValidate(data,labels,n):
 	end = time.time()
 	return (sum(scores)/n,end-start)
 
-(acc,timetaken) = crossValidate(np.loadtxt("attr.txt"),np.loadtxt("label.txt"),10)
+(acc,timetaken) = crossValidate(np.loadtxt(sys.argv[1]),np.loadtxt(sys.argv[2]),10)
 print "Accuracy for cross-validation : ",acc,"%"
 print "Time taken : ",timetaken,"s"

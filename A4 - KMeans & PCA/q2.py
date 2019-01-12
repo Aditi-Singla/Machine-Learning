@@ -1,14 +1,13 @@
-import numpy as np
 import os
-import random
 import time
-from sklearn import svm
-from sklearn.model_selection import cross_val_score
-import matplotlib.image as mpimg
-from collections import Counter
+import random
+import numpy as np
 from scipy import misc
+from sklearn import svm
+from collections import Counter
+import matplotlib.image as mpimg
+from sklearn.model_selection import cross_val_score
 # import scipy.misc
-
 
 ##########################################
 ############ Average Image ###############
@@ -32,7 +31,7 @@ colLfw = 0
 counterlfw = 0
 mapLfw = dict()
 allFilesLfw = [] 
-rootDir = './lfw_easy/'
+rootDir = './data/q2_pca/lfw_easy/'
 for dirName, subdirList, fileList in os.walk(rootDir):
 	for fname in fileList:
 		ext = os.path.splitext(fname)[-1].lower()
@@ -62,7 +61,7 @@ colOrl = 0
 counterorl = 0
 mapOrl = dict()
 allFilesOrl = [] 
-rootDir = './orl_faces/'
+rootDir = './data/q2_pca/orl_faces/'
 for dirName, subdirList, fileList in os.walk(rootDir):
 	for fname in fileList:
 		ext = os.path.splitext(fname)[-1].lower()
@@ -142,7 +141,7 @@ for i in xrange(5):
 	minNum = np.amin(eigenLfw[:,i])
 	misc.toimage(((eigenLfw[:,i]-minNum).reshape(rowLfw,colLfw))*(200.0/maxNum)).save("lfw"+str(i+1)+".png")
 
-print "\nPRL Faces : Top 5 Principal Components"
+print "\nORL Faces : Top 5 Principal Components"
 for i in xrange(5):
 	print "Face ",(i+1)
 	maxNum = np.amax(eigenOrl[:,i])
@@ -182,7 +181,7 @@ print "\nAfter Normalisation...."
 print "Accuracy : ",acc,"%"
 print "Time taken : ",timetaken,"s"
 
-print "\nAfter...."
+print "\nAfter PCA...."
 (acc,timetaken) = crossValidate(np.loadtxt("projections_lfw.txt"),np.loadtxt("labels_lfw.txt"),10)
 print "Accuracy : ",acc,"%"
 print "Time taken : ",timetaken,"s"
@@ -201,7 +200,7 @@ print "\nAfter Normalisation...."
 print "Accuracy : ",acc,"%"
 print "Time taken : ",timetaken,"s"
 
-print "\nAfter...."
+print "\nAfter PCA...."
 (acc,timetaken) = crossValidate(np.loadtxt("projections_orl.txt"),np.loadtxt("labels_orl.txt"),10)
 print "Accuracy : ",acc,"%"
 print "Time taken : ",timetaken,"s"
