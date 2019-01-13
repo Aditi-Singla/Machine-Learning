@@ -14,16 +14,20 @@ To run the algorithms -
   ```bash
   python q1.py <attributes> <labels>
   ```
+  The dataset that has been used here uses the command:
+
+  ```bash
+  python q1.py data/q1_kmeans/attr.txt data/q1_kmeans/label.txt
+  ```
 
 - For q2 on PCA, 
 
   ```bash
   python q2.py
   ```
-  This runs on datasets for LFW and ORL faces ([./data/q2_pca/](./data/q2_pca/)), and generates the eigen faces for each of the two datasets, along with several temp files that are used for image reconstruction. Now to run image reconstruction on any of the images in the given dataset,
+  This runs on datasets for LFW and ORL faces ([link](./data/q2_pca/)), and generates the eigen faces for each of the two datasets, along with several temp files that are used for image reconstruction. Now to run image reconstruction on any of the images in the given dataset,
 
   ```bash
   python q2_reconstruct.py <image-address>
   ```
   Note: The image address should be of the following format: './data/q2_pca/orl_faces/s1/1.pgm' (for example).
-  
