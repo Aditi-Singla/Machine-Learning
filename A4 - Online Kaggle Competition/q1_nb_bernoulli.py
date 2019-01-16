@@ -1,8 +1,8 @@
-import numpy as np
-from sklearn.model_selection import cross_val_score
-from sklearn.naive_bayes import BernoulliNB
-import pickle
 import time
+import pickle
+import numpy as np
+from sklearn.naive_bayes import BernoulliNB
+from sklearn.model_selection import cross_val_score
 
 Xtrain = []
 Ytrain = []

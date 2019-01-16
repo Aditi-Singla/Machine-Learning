@@ -1,9 +1,9 @@
+import time
+import pickle
 import numpy as np
 from sklearn import svm
-from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestClassifier
-import pickle
-import time
+from sklearn.model_selection import cross_val_score
 
 Xtrain = []
 Ytrain = []

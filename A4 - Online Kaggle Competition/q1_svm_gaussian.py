@@ -1,9 +1,9 @@
+import time
+import pickle
 import numpy as np
-from sklearn.model_selection import cross_val_score
 from sklearn import svm
 from sklearn.decomposition import PCA
-import pickle
-import time
+from sklearn.model_selection import cross_val_score
 
 Xtrain = []
 Ytrain = []
