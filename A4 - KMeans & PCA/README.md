@@ -30,4 +30,4 @@ To run the algorithms -
   ```bash
   python q2_reconstruct.py <image-address>
   ```
-  Note: The image address should be of the following format: './data/q2_pca/orl_faces/s1/1.pgm' (for example).
+  Note: The image address should be of the following format: `./data/q2_pca/orl_faces/s1/1.pgm` (for example).
