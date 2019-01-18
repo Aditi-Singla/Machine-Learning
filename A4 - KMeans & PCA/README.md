@@ -1,4 +1,4 @@
-## Assignment 3 - KMeans and Principal Component Analysis
+## Assignment 4 - KMeans and Principal Component Analysis
 
 This assignment involves implementation of KMeans Clustering algorithm for recognizing human activities and postural transitions
 (based on attributes collected through a smartphone) and Principal Component Analysis algorithm for face recognition. Statement for the same is linked [here](./Statement.pdf).
